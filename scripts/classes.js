@@ -26,58 +26,33 @@ class Carrito{
         this.itemsPedidos = [];
     }
 
-    articuloValido(numeroArticulo){
-        if((numeroArticulo>0)&&(numeroArticulo<=this.itemsDisponibles.length)){
-            return true;                    
+    //Devuelve la cantidad de artículos con número de artículo numeroArticulo
+    darCantidad(numeroArticulo){        
+        const articulo = this.itemsPedidos.find((elem) => elem.numeroArticulo === numeroArticulo);
+        if( articulo == undefined){
+            return 0;                 
         }else{
-            return false;
-        }
-    }
-
-    darNombreArticulo(numeroArticulo){
-        if(this.articuloValido(numeroArticulo)){
-            return this.itemsDisponibles[numeroArticulo-1].nombre;                    
-        }else{
-            alert("Número de artículo incorrecto");
-            return "Descatalogado";
-        }
-    }
-    darPrecio(numeroArticulo){
-        if(this.articuloValido(numeroArticulo)){
-            return this.itemsDisponibles[numeroArticulo-1].precio;                     
-        }else{
-            alert("Número de artículo incorrecto");
-            return 0;
-        }
-    }
-    darCantidad(numeroArticulo){
-        if(this.articuloValido(numeroArticulo)){
-            const articulo = this.itemsPedidos.find((elem) => elem.numeroArticulo === numeroArticulo);
-            if( articulo == undefined){
-                return 0;                 
-            }else{
-                return articulo.cantidad;
-            }                             
-        }else{
-            alert("Número de artículo incorrecto");
-            return 0; 
-        }   
+            return articulo.cantidad;
+        }      
     }    
+
     agregarArticulo(numeroArticulo, cantidad){
-        if(this.articuloValido(numeroArticulo)){
+        if(articuloValido(this.itemsDisponibles,numeroArticulo)){
             const articulo = this.itemsPedidos.find((elem) => elem.numeroArticulo === numeroArticulo);
             if( articulo == undefined){
                 this.itemsPedidos.push({ numeroArticulo: numeroArticulo, cantidad: cantidad });                 
             }else{
                 articulo.cantidad += cantidad;
-            }                             
+            }
+            alert("Se agregó al carrito "+cantidad+ " páginas de un sitio web del tipo "+this.darNombreArticulo(numeroArticulo));                
+                                            
         }else{
-            alert("Número de artículo incorrecto");
+            alert("Artículo no disponible");
         }                       
     }
-    
+
     quitarArticulo(numeroArticulo, cantidad){
-        if(this.articuloValido(numeroArticulo)){
+        if(this.articuloValido(this.itemsDisponibles,numeroArticulo)){
             const articulo = this.itemsPedidos.find((elem) => elem.numeroArticulo === numeroArticulo);
             if( articulo != undefined){
                 articulo.cantidad -= cantidad;
@@ -89,44 +64,7 @@ class Carrito{
             alert("Número de artículo incorrecto");
         }   
     }
-    
-    elegirArticulo(){
-        if(this.itemsDisponibles.length>0){
-            let mensaje ="Digite el número del artículo que quiere agregar al carrito:\n";
-            for (let numeroArticulo=1; numeroArticulo<=this.itemsDisponibles.length;numeroArticulo++){
-                mensaje = mensaje + "\nN° "+numeroArticulo+"\tPrecio unitario: "+this.darPrecio(numeroArticulo)+" UYU + IVA\t"+this.darNombreArticulo(numeroArticulo);       
-            }
-            let entrada = prompt(mensaje);
-            return entrada;
-        }else{
-            return "NOHAYARTICULOSDISPONIBLES";
-        }
-    }
-   pedirArticuloYCantidad(){
-        let item = this.elegirArticulo();    
-        if ((item!=null)&&(item!="NOHAYARTICULOSDISPONIBLES")){
-            let  numeroArticulo = parseInt(item);
-            if((numeroArticulo>0) && (numeroArticulo<=this.itemsDisponibles.length)){
-                //Número de item correcto, pedir cantidad
-                let entradaCantidad = prompt("Agregar cantidad de "+this.darNombreArticulo(numeroArticulo));
-                if (entradaCantidad != null){
-                    let cantidad = parseInt(entradaCantidad);
-                    if (cantidad>0){
-                        this.agregarArticulo(numeroArticulo, cantidad);
-                        alert("Se agregó al carrito "+cantidad+ " "+this.darNombreArticulo(numeroArticulo));                
-                    }else {
-                        alert("No se agregaron elementos al carrito");
-                    }
-                }else{
-                    alert("No se agregaron elementos al carrito");
-                }
-            }else{
-                alert("N° de artículo incorrecto");            
-            }
-        }
-        return (item);      
-    }
-    
+
     subtotalCarrito(descuento){                     
         return this.itemsPedidos.reduce((acumulador,elem) => acumulador + elem.cantidad * descuento.aplicarDescuento(this.darPrecio(elem.numeroArticulo)),0);          
     }
@@ -158,25 +96,51 @@ class Carrito{
         return(confirm(mensaje+"\nTotal con "+descuento.valor*100+"% dto: "+subtotal+" UYU\nIVA "+IVA*100+"%: "+(subtotal*IVA)+" UYU\nTotal IVA incluido: "+(subtotal*(1+IVA))+" UYU"));    
     }
     
-    cargarCarrito(){
+    cargarCarrito(){        
         let item = 0;   
         let continuar = false; 
-        let verCarrito = false;
+        let verCarrito = false;    
+        alert('cargar carrito');    
         do {
-            item = this.pedirArticuloYCantidad();
-            if ((item!=null)&&(item!="NOHAYARTICULOSDISPONIBLES")){
-                continuar = confirm("¿Desea agregar más artículos?");   
-                verCarrito = true; 
-            }else if (item =="NOHAYARTICULOSDISPONIBLES"){  
-                alert("Lo sentimos no hay artículos disponibles por el momento");
-                continuar = false;
-                verCarrito = false; 
-            }else{ 
-                continuar = false;              
-            }          
+            alert('entro cargar carrito'); 
+            ///////////////////////
+            //let codigoSitio = this.codigoSitio(); // devuelve el código de sitio elegido o 0 
+            let sitio = document.getElementById("sitio").value;
+            alert("entrada sitio:" + sitio); 
+            if(sitio==NaN)
+                sitio=0;
+            alert("entrada sitio:" + sitio); 
+            //////////////////////////////////
+            let codigoSitio = sitio;
+    
+            if(articuloValido(this.itemsDisponibles,codigoSitio)){
+                //Número de item correcto, ver cantidad de páginas web del sitio
+                let cantidad = cantidadDePaginas();
+                    if (cantidad>0){
+                        this.agregarArticulo(codigoSitio, cantidad);
+                    }else {
+                        alert("La cantidad de páginas debe ser mayor que cero");
+                    }           
+            }else{
+                codigoSitio = 0; // si el sitio no está disponible devuelve cero
+                alert("Sitio no disponible");            
+            }  
+    
+    
+            item = codigoSitio;  
+            alert("item cargar carrito: "+item);             
+             if ((item>0)){
+                 continuar = confirm("¿Desea agregar más artículos?");   
+                 verCarrito = true;            
+             }else{ 
+               continuar = false;
+               alert("Error en la carga del carrito, inténtelo de nuevo más tarde");              
+             }          
         } while (continuar);    
         return(verCarrito); 
     }
+    
+    
     
     aplicarDescuentoCarrito(){
         let intentoDto = 0;
@@ -202,52 +166,6 @@ class Carrito{
         } 
         return salida;       
     }
-    simulador(){
-        // Simulador de carrito de compra
-        let comprar = true;
-        while(comprar){    
-            let verCarrito = this.cargarCarrito();            
-            if (verCarrito){
-                let continuar = this.mostrarCarrito();                
-                if (continuar){
-                    let importeAPagar = this.subtotalCarrito(this.descuentosDisponibles[0]);
-                    if (importeAPagar>0){
-                        let pagar = confirm("Importe a pagar "+importeAPagar+" UYU + IVA\n¿Desea pagar ahora?");
-                        if (pagar){    
-                            let dto = this.aplicarDescuentoCarrito();                 
-                            if (!this.mostrarCarritoDto(dto)){
-                                comprar = confirm(mensajeCarritoOSalir);
-                                if (comprar){
-                                    this.vaciarCarrito();
-                                }               
-                            }else{
-                                importeAPagar = this.subtotalCarrito(dto);     
-                                // Cliente paga
-                                alert("Gracias por elegirnos");   
-                                this.vaciarCarrito();                                                
-                            }                                            
-                        }else{
-                            comprar = confirm(mensajeCarritoOSalir);
-                            if (comprar){
-                                this.vaciarCarrito();
-                            }
-                        }
-                    }else{
-                        comprar = confirm(mensajeCarritoOSalir);
-                        if (comprar){
-                            this.vaciarCarrito();
-                        }
-                    } 
-                }else{
-                    comprar = confirm(mensajeCarritoOSalir);
-                    if (comprar){
-                        this.vaciarCarrito();
-                    }
-                }
-            }else{               
-                comprar = confirm(mensajeContinuarOSalir);
-            }    
-        }
-        alert("Gracias por utilizar nuestro simulador ¡Hasta la próxima!");
-    }
+
+
 }

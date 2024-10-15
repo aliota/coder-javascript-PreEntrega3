@@ -55,7 +55,7 @@
         </div>
     </header>      
 
-    <main class="px-sm-4 py-3 px-2 container-fluid main-contacto">
+    <main class="px-sm-4 py-3 px-2 container-fluid main-web">
         
         <div class="row">
             <h1 class="col-12 text-center">Elige tu servicio Premium</h1>            
@@ -66,22 +66,21 @@
        
         <section class="row justify-content-center align-items-center bg-warning-subtle rounded">            
             <div class="p-xl-2 p-1 col-12 ">                
-                <form action="" method="post" class="form p-2 p-xl-3">
-                    <div class="mb-3">
-                        
-                        <label for="webs" class="form-label m-2"><strong>Selecciona el tipo de sitio web:</strong></label>                        
-                        <select name="lenguajes" id="webs" class="form-control p-2" aria-label="Webs">
-                            <option value="institucional">Institucionales o de negocio</option>
-                            <option value="personal">Personales o portafolios</option>
-                            <option value="micrositio">Micrositios</option>
-                            <option value="blog">Blogs</option>
-                            <option value="educativa">Educativos</option>
-                            <option value="ecommerce">Comercio electrónico</option>    
-                            <option value="portal">Portales</option>
-                            <option value="noticias">Noticias o revista</option>            
-                            <option value="foro">Wiki o foros de comunidades</option>               
-                            <option value="redes">Redes sociales</option>                                
-                        </select>                    
+                <form action="" method="post" class="form p-2 p-xl-3" id="formPremium">
+                    <div class="mb-3">                        
+                        <label for="sitio" class="form-label m-2"><strong>Selecciona el tipo de sitio web:</strong></label>                    
+                        <select name="lenguajes" id="sitio" class="form-control p-2" aria-label="Webs">
+                            <option value=1>Institucionales o de negocio</option>
+                            <option value=2>Personales o portafolios</option>
+                            <option value=3>Micrositios</option>
+                            <option value=4>Blogs</option>
+                            <option value=5>Educativos</option>
+                            <option value=6>Comercio electrónico</option>    
+                            <option value=7>Portales</option>
+                            <option value=8>Noticias o revista</option>            
+                            <option value=9>Wiki o foros de comunidades</option>               
+                            <option value=10>Redes sociales</option>                                
+                        </select>                     
                     </div>
 
                     <div class="mb-3">                            
@@ -127,6 +126,6 @@
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <script src="../scripts/classes.js"></script>
     <script src="../scripts/functions.js"></script>
-    <!-- <script src="../scripts/carrito.js"></script> -->
+    <script src="../scripts/carrito.js"></script>
 </body>
 </html>

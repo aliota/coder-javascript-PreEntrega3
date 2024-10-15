@@ -338,6 +338,27 @@ body footer a:over {
   height: 100%;
 }
 
+/*main webs*/
+.main-web form {
+  color: #114c5f !important;
+  border: 2px solid #114c5f;
+  border-radius: 5px;
+}
+.main-web form .btn-primary {
+  border-color: #114c5f !important;
+  background-color: #047d96;
+}
+.main-web form .btn-primary:hover {
+  background-color: #0799b6 !important;
+}
+.main-web form .btn-primary:active {
+  background-color: #0799b6 !important;
+}
+.main-web .info-contacto {
+  color: #114c5f !important;
+  font-size: 0.8rem;
+}
+
 /*main Contacto*/
 .main-contacto form {
   color: #114c5f !important;
