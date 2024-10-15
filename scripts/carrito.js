@@ -1,8 +1,5 @@
 // Constantes
 const IVA = 0.22;
-const mensajeContinuarOSalir = "Elija Aceptar para continuar o Cancelar para salir del simulador";
-const mensajeCarritoOSalir = "Elija Aceptar para comenzar de nuevo o Cancelar para salir del simulador";
-const resumenCarrito = "Resumen del carrito de compras";
 
 // Inicializar Items Disponibles
 const ITEMS = ["institucional","personal","micrositio","blog","educativo","ecommerce","portal","noticias","foro","redes"];     
@@ -25,3 +22,5 @@ console.log(carrito);
 //carrito.simulador();
 let formulario = document.getElementById("formPremium");
 let verCarrito = formulario.addEventListener("submit",sitioYCantidad);  
+let irCarrito = document.getElementById("irCarrito");
+let resumen = irCarrito.addEventListener("click",resumenCarrito); 

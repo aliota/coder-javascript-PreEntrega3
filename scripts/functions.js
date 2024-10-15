@@ -44,7 +44,7 @@ function darPrecio(itemsDisponibles,numeroArticulo){
 
 // codigoSitio(): devuelve el código del sitio elegido si es un valor válido o 0 sino
 function codigoSitio(){   
-    let sitioElegido = document.getElementById("sitio").value;      
+    let sitioElegido = parseInt(document.getElementById("sitio").value);      
     let resultado = sitioElegido>0? sitioElegido : 0;    
     return resultado;                
 }
@@ -133,4 +133,45 @@ function simulador(){
 }
 
 
+function resumenCarrito(){
+    let sitiosPedidos = `
+        <p class="my-2">
+            Sitio1
+        </p>
+    `;
+    let resumenCarrito = `
 
+        <div class="row">
+            <h1 class="col-12 text-center">Resumen del carrito</h1>            
+        </div>
+
+        <section class="row justify-content-center align-items-center bg-warning-subtle rounded my-3 px-2">
+            <div class="p-xl-3 p-1 col-12 m-2" id="mostrarCarrito">
+                <h2 class="text-primary ">
+                    Sitios solicitados:
+                </h2>
+                ${sitiosPedidos}
+                
+            </div> 
+        </section>
+            
+        <section class="row justify-content-center align-items-center bg-warning-subtle rounded">                        
+            <div class="p-xl-2 p-1 col-12 ">                                  
+                <form action="" method="post" class="form p-2 p-xl-3" id="formDescuento">                                                   
+                    <div class="mb-3">                            
+                        <label for="descuento" class="form-label m-2"><strong>Ingrese cupón de descuento</strong></label>
+                        <input type="email" class="form-control p-2" id="descuento" placeholder="Si dispone de un cupón de descuento ingréselo aquí" aria-label="cupón de descuento">
+                    </div>  
+                    
+                    <button type="submit" class="btn btn-primary p-1 my-1">Aplicar descuento</button>
+                    <button type="reset" class="btn btn-primary p-1 my-1 mx-3">Cancelar</button>
+                    <button type="button" class="btn btn-primary p-1 my-1">Omitir</button>                                        
+                </form>
+            </div>              
+        </section> 
+
+    `;  
+    
+    let mainPremium = document.getElementById("mainPremium");
+    mainPremium.innerHTML = resumenCarrito;
+}

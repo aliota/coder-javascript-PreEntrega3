@@ -58,42 +58,35 @@
     <main class="px-sm-4 py-3 px-2 container-fluid main-web" id="mainPremium">
         
         <div class="row">
-            <h1 class="col-12 text-center">Elige tu servicio Premium</h1>            
+            <h1 class="col-12 text-center">Resumen del carrito</h1>            
         </div>
-        <div class="row">
-            <h2 class="py-3 text-center">... y agrégalo al carrito</h2>
-        </div> 
-       
-        <section class="row justify-content-center align-items-center bg-warning-subtle rounded">            
-            <div class="p-xl-2 p-1 col-12 ">
-                <form action="" method="post" class="form p-2 p-xl-3" id="formPremium">
-                    <div class="mb-3">                        
-                        <label for="sitio" class="form-label m-2"><strong>Selecciona el tipo de sitio web:</strong></label>                    
-                        <select name="lenguajes" id="sitio" class="form-control p-2" aria-label="Webs">
-                            <option value=1>Institucionales o de negocio</option>
-                            <option value=2>Personales o portafolios</option>
-                            <option value=3>Micrositios</option>
-                            <option value=4>Blogs</option>
-                            <option value=5>Educativos</option>
-                            <option value=6>Comercio electrónico</option>    
-                            <option value=7>Portales</option>
-                            <option value=8>Noticias o revista</option>            
-                            <option value=9>Wiki o foros de comunidades</option>               
-                            <option value=10>Redes sociales</option>                                
-                        </select>                     
-                    </div>
 
+        <section class="row justify-content-center align-items-center bg-warning-subtle rounded my-3 px-2">
+            <div class="p-xl-3 p-1 col-12 m-2" id="mostrarCarrito">
+                <h2 class="text-primary ">
+                    Sitios solicitados:
+                </h2>
+                <p class="my-2">
+                    Sitio1
+                </p>
+            </div> 
+        </section>
+            
+        <section class="row justify-content-center align-items-center bg-warning-subtle rounded">                        
+            <div class="p-xl-2 p-1 col-12 ">                                  
+                <form action="" method="post" class="form p-2 p-xl-3" id="formDescuento">                                                   
                     <div class="mb-3">                            
-                        <label for="cantidad" class="form-label m-2"><strong>Ingresa la cantidad de páginas web que contendrá el sitio</strong></label>
-                        <input type="number" class="form-control p-2" id="cantidad" placeholder="ej: 5" aria-label="cantidad de páginas">
-                    </div>                
+                        <label for="descuento" class="form-label m-2"><strong>Ingrese cupón de descuento</strong></label>
+                        <input type="email" class="form-control p-2" id="descuento" placeholder="Si dispone de un cupón de descuento ingréselo aquí" aria-label="cupón de descuento">
+                    </div>  
                     
-                    <button type="submit" class="btn btn-primary p-1 my-1">Agregar al carrito</button>
+                    <button type="submit" class="btn btn-primary p-1 my-1">Aplicar descuento</button>
                     <button type="reset" class="btn btn-primary p-1 my-1 mx-3">Cancelar</button>
-                    <button type="button" class="btn btn-primary p-1 my-1" id="irCarrito">Ir al carrito</button>                                        
+                    <button type="button" class="btn btn-primary p-1 my-1">Omitir</button>                                        
                 </form>
             </div>              
-        </section>        
+        </section> 
+
     </main>
     <footer class="container-fluid d-flex align-items-center justify-content-center">       
         <div class="row align-items-center justify-content-center w-100 h-auto">                        
