@@ -24,3 +24,5 @@ let formulario = document.getElementById("formPremium");
 let agregarSitio = formulario.addEventListener("submit",sitioYCantidad);  
 let irCarrito = document.getElementById("irCarrito");
 let resumen = irCarrito.addEventListener("click",resumenCarrito); 
+
+

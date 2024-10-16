@@ -54,69 +54,45 @@
             
         </div>
     </header>
-    <main class="px-sm-4 py-2 px-2 container-fluid main-index">
+    <main class="px-sm-4 py-3 px-2 container-fluid main-web" id="mainPremium">
+        
         <div class="row">
-            <section class="col-xl-8 col-12 main-index__section-1">               
-                <h1 class="row align-items-center text-center h-25">
-                    <div class="col-md-6 col-6">
-                        Crea tu Web 
-                    </div>                                  
-                    <div class="col-md-2 col-2 con">
-                        con
-                    </div> 
-                    <div class="col-xl-4 col-4">
-                        +45.uy
+            <h1 class="col-12 text-center">Elige tu servicio Premium</h1>            
+        </div>
+        <div class="row">
+            <h2 class="py-3 text-center">... y agrégalo al carrito</h2>
+        </div> 
+       
+        <section class="row justify-content-center align-items-center bg-warning-subtle rounded">            
+            <div class="p-xl-2 p-1 col-12 ">
+                <form action="" method="post" class="form p-2 p-xl-3" id="formPremium">
+                    <div class="mb-3">                        
+                        <label for="sitio" class="form-label m-2"><strong>Selecciona el tipo de sitio web:</strong></label>                    
+                        <select name="lenguajes" id="sitio" class="form-control p-2" aria-label="Webs">
+                            <option value=1>Institucionales o de negocio</option>
+                            <option value=2>Personales o portafolios</option>
+                            <option value=3>Micrositios</option>
+                            <option value=4>Blogs</option>
+                            <option value=5>Educativos</option>
+                            <option value=6>Comercio electrónico</option>    
+                            <option value=7>Portales</option>
+                            <option value=8>Noticias o revista</option>            
+                            <option value=9>Wiki o foros de comunidades</option>               
+                            <option value=10>Redes sociales</option>                                
+                        </select>                     
                     </div>
-                </h1>        
-                <h2 class="row justify-content-center align-items-center h-25">Rápido y Fácil</h2>
-                
-                <div class="row  section-1__servicios h-25">            
-                    <div class="p-1 col-6 align-self-center text-center ">
-                        <div class="m-1 rounded-pill bg-warning-subtle d-inline-block">
-                            <button class="m-1 rounded-pill bg-warning-subtle"><h3 class="text-center"><a href="./pages/services.html" role="button">Tu Web en 5'</a></h3></button>                    
-                        </div>                    
-                    </div>
-                    <div class="p-1 col-6 align-self-center text-center">
-                        <div class="m-1 rounded-pill bg-warning-subtle d-inline-block">
-                            <button class="m-1 rounded-pill bg-warning-subtle"><h3 class="text-center"><a href="./pages/services.html#tips" role="button">Tu Web de Tips</a></h3></button>                    
-                        </div>
-                    </div>  
-                </div>  
 
-                <div class="row section-1__servicios h-25">
-                    <div class="p-1 col-12 align-self-center text-center  ">
-                        <div class="m-1 m-xl-0 rounded-pill bg-warning-subtle d-inline-block">
-                            <button class="m-1 rounded-pill bg-warning-subtle"><h3 class="text-center"><a href="./pages/services.html#premium" role="button">Tu Web Premium</a></h3></button>                    
-                        </div>                        
-                    </div>                                                
-                </div>  
-
-            </section>
-
-            <aside class="col-xl-4 d-xl-block d-none p-5">
-                <h2 class="text-center mb-2">Inicia sesión</h2>
-                <section class="row justify-content-center align-items-center bg-warning-subtle rounded">           
-                    <div class="p-1 col-12 ">                
-                        <form action="" method="post" class="form p-2">
-                            <div class="mb-3">                               
-                                <label for="usuario" class="form-label m-2"><strong>Usuario</strong></label>
-                                <input type="text" class="form-control p-2" id="usuario" placeholder="Ingresa tu usuario o email" aria-label="Usuario">
-                            </div>
-                            
-                            <div class="mb-3">                                    
-                                <label for="password" class="form-label m-2"><strong>Contraseña</strong></label>
-                                <input type="password" class="form-control p-2" id="password" placeholder="Ingresa tu contraseña" aria-label="Contraseña">
-                            </div>                      
-                                
-                            <button type="submit" class="btn btn-primary p-1 my-1" role="button">Iniciar Sesión</button>
-                            <a href="./pages/user.html" class="ps-2 text-primary" role="button">Registrarse</a>
-                            <p class="mt-3 mb-2"><a href="./pages/user.html" class=" text-dark"  role="button" >¿Olvidaste la contraseña?</a></p>                                                                       
-                        </form>
-                    </div>                     
-                </section>                
-            </aside>
-
-        </div>       
+                    <div class="mb-3">                            
+                        <label for="cantidad" class="form-label m-2"><strong>Ingresa la cantidad de páginas web que contendrá el sitio</strong></label>
+                        <input type="number" class="form-control p-2" id="cantidad" placeholder="ej: 5" aria-label="cantidad de páginas">
+                    </div>                
+                    
+                    <button type="submit" class="btn btn-primary p-1 my-1">Agregar al carrito</button>
+                    <button type="reset" class="btn btn-primary p-1 my-1 mx-3">Cancelar</button>
+                    <button type="button" class="btn btn-primary p-1 my-1" id="irCarrito">Ir al carrito</button>                                                        
+                </form>
+            </div>              
+        </section>        
     </main>
 
     <footer class="container-fluid d-flex align-items-center justify-content-center">       
@@ -147,6 +123,6 @@
     <script src="./scripts/bootstrap.bundle.min.js"></script> 
     <script src="./scripts/classes.js"></script>
     <script src="./scripts/functions.js"></script>
-    <!-- <script src="./scripts/main.js"></script>    -->
+    <script src="./scripts/carrito.js"></script> 
 </body>
 </html> 
