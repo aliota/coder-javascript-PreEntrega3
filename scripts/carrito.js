@@ -2,7 +2,7 @@
 const IVA = 0.22;
 
 // Inicializar Items Disponibles
-const ITEMS = ["institucional","personal","micrositio","blog","educativo","ecommerce","portal","noticias","foro","redes"];     
+const ITEMS = ["Sitio Institucional o Empresarial","Portafolio","Micrositio","Blog","Plataforma Educativa","eCommerce","Portal","Sitio de Noticias","Foro","Red Social"];     
 const PRECIOS = [1000.00, 500.00, 600.00, 400.00, 700.00, 2000.00, 3000.00, 1500.00, 300.00, 2500.00];
 const itemsDisponibles = [];
 agregarItemsDisponibles(itemsDisponibles,ITEMS,PRECIOS);
@@ -16,11 +16,11 @@ const descuentosDisponibles = [dto0,dto5,dto10];
 console.log(descuentosDisponibles);
 
 
-//Simular carrito
-const carrito = new Carrito(itemsDisponibles,descuentosDisponibles);
-console.log(carrito);
-//carrito.simulador();
+// Carrito
+const miCarrito = new Carrito(itemsDisponibles,descuentosDisponibles);
+console.log(miCarrito);
+
 let formulario = document.getElementById("formPremium");
-let verCarrito = formulario.addEventListener("submit",sitioYCantidad);  
+let agregarSitio = formulario.addEventListener("submit",sitioYCantidad);  
 let irCarrito = document.getElementById("irCarrito");
 let resumen = irCarrito.addEventListener("click",resumenCarrito); 

@@ -31,9 +31,9 @@ function darNombreArticulo(itemsDisponibles,numeroArticulo){
 }
 
 //Devuelve el precio del artículo si numeroArticulo es un artículo válido de itemsDisponibles o -1 en caso contrario
-function darPrecio(itemsDisponibles,numeroArticulo){
-    if(articuloValido(itemsDisponibles,numeroArticulo)){
-        return itemsDisponibles[numeroArticulo-1].precio;                     
+function darPrecio(itemsDisponibles,numeroArticulo){    
+    if(articuloValido(itemsDisponibles,numeroArticulo)){       
+        return itemsDisponibles[numeroArticulo-1].precio;  
     }else{
         alert("Número de artículo incorrecto");
         return -1;
@@ -82,63 +82,23 @@ function sitioYCantidad(){
 }
 
 
-function simulador(){
-    // Simulador de carrito de compra
-    let comprar = true;
-    while(comprar){    
-        let formulario = document.getElementById("formPremium");            
-        let verCarrito = formulario.addEventListener("submit",this.cargarCarrito);            
-        if (verCarrito){
-            let continuar = this.mostrarCarrito();                
-            if (continuar){
-                let importeAPagar = this.subtotalCarrito(this.descuentosDisponibles[0]);
-                if (importeAPagar>0){
-                    let pagar = confirm("Importe a pagar "+importeAPagar+" UYU + IVA\n¿Desea pagar ahora?");
-                    if (pagar){    
-                        let dto = this.aplicarDescuentoCarrito();                 
-                        if (!this.mostrarCarritoDto(dto)){
-                            comprar = confirm(mensajeCarritoOSalir);
-                            if (comprar){
-                                this.vaciarCarrito();
-                            }               
-                        }else{
-                            importeAPagar = this.subtotalCarrito(dto);     
-                            // Cliente paga
-                            alert("Gracias por elegirnos");   
-                            this.vaciarCarrito();                                                
-                        }                                            
-                    }else{
-                        comprar = confirm(mensajeCarritoOSalir);
-                        if (comprar){
-                            this.vaciarCarrito();
-                        }
-                    }
-                }else{
-                    comprar = confirm(mensajeCarritoOSalir);
-                    if (comprar){
-                        this.vaciarCarrito();
-                    }
-                } 
-            }else{
-                comprar = confirm(mensajeCarritoOSalir);
-                if (comprar){
-                    this.vaciarCarrito();
-                }
-            }
-        }else{               
-            comprar = confirm(mensajeContinuarOSalir);
-        }    
+function renderCarrito(){
+    let carrito = JSON.parse(localStorage.getItem('carrito'));        
+    let salida = "";
+    if (carrito){            
+        carrito.forEach(element => {
+            salida += `
+            <p class="my-2 text-secondary">
+                <strong>${darNombreArticulo(itemsDisponibles,element.sitio)}</strong> (${element.cantidad} páginas) - <span class="text-primary">Precio por página $ ${darPrecio(itemsDisponibles,element.sitio)} + IVA </span>
+            </p>`;
+            miCarrito.agregarArticulo(element.sitio,element.cantidad);            
+        });
     }
-    alert("Gracias por utilizar nuestro simulador ¡Hasta la próxima!");
+    return salida;            
 }
 
-
 function resumenCarrito(){
-    let sitiosPedidos = `
-        <p class="my-2">
-            Sitio1
-        </p>
-    `;
+    let sitiosPedidos = renderCarrito();
     let resumenCarrito = `
 
         <div class="row">
@@ -150,8 +110,8 @@ function resumenCarrito(){
                 <h2 class="text-primary ">
                     Sitios solicitados:
                 </h2>
-                ${sitiosPedidos}
-                
+                ${sitiosPedidos} 
+                Subtotal Carrito $ ${miCarrito.subtotalCarrito(dto0)} + IVA            
             </div> 
         </section>
             

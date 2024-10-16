@@ -40,12 +40,10 @@ class Carrito{
         if(articuloValido(this.itemsDisponibles,numeroArticulo)){
             const articulo = this.itemsPedidos.find((elem) => elem.numeroArticulo === numeroArticulo);
             if( articulo == undefined){
-                this.itemsPedidos.push({ numeroArticulo: numeroArticulo, cantidad: cantidad });                 
+                this.itemsPedidos.push({ numeroArticulo: numeroArticulo, cantidad: cantidad });                        
             }else{
-                articulo.cantidad += cantidad;
-            }
-            alert("Se agregó al carrito "+cantidad+ " páginas de un sitio web del tipo "+this.darNombreArticulo(numeroArticulo));                
-                                            
+                articulo.cantidad += cantidad;                
+            }                                           
         }else{
             alert("Artículo no disponible");
         }                       
@@ -65,8 +63,8 @@ class Carrito{
         }   
     }
 
-    subtotalCarrito(descuento){                     
-        return this.itemsPedidos.reduce((acumulador,elem) => acumulador + elem.cantidad * descuento.aplicarDescuento(this.darPrecio(elem.numeroArticulo)),0);          
+    subtotalCarrito(descuento){                      
+        return this.itemsPedidos.reduce((acumulador,elem) => acumulador + elem.cantidad * descuento.aplicarDescuento(darPrecio(itemsDisponibles,elem.numeroArticulo)),0);          
     }
     
     mostrarCarrito(){   
